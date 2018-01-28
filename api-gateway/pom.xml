@@ -6,14 +6,14 @@
     <parent>
         <artifactId>smartbooks</artifactId>
         <groupId>com.koryakin</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <packaging>jar</packaging>
 
 
     <artifactId>api-gateway</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>1.0</version>
 
     <dependencies>
     <dependency>
@@ -36,11 +36,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zuul</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.koryakin</groupId>
-            <artifactId>util</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+
     </dependencies>
 
 </project>

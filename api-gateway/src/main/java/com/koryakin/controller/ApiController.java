@@ -17,11 +17,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RequestMapping("/api")
 public class ApiController {
-    @Autowired
-    private LoginUserService loginUserService;
+
+    private final LoginUserService loginUserService;
+
+    private final AuthenticationManager authenticationManager;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    public ApiController(LoginUserService loginUserService, AuthenticationManager authenticationManager) {
+        this.loginUserService = loginUserService;
+        this.authenticationManager = authenticationManager;
+    }
 
     @RequestMapping(value = "/generate-token", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody LoginUser loginUser) throws AuthenticationException {

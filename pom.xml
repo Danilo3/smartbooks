@@ -7,12 +7,11 @@
     <groupId>com.koryakin</groupId>
     <artifactId>smartbooks</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <modules>
         <module>user-service</module>
         <module>api-gateway</module>
-        <module>util</module>
     </modules>
 
     <properties>
@@ -35,8 +34,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
-
+        <dependency>
+            <groupId>com.koryakin</groupId>
+            <artifactId>util</artifactId>
+            <version>1.0</version>
+            <exclusions>
+                <exclusion>
+                        <groupId>org.springframework.security</groupId>
+                        <artifactId>spring-security-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>

@@ -66,7 +66,7 @@ public class JwtTokenUtil implements Serializable {
                 .compact();
     }
 
-    public static Boolean validateToken(String token, UserDetails userDetails) {
+    static Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (
               username.equals(userDetails.getUsername())

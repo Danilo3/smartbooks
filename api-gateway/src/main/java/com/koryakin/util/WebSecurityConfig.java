@@ -24,9 +24,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource(name = "loginUserService")
     private UserDetailsService userDetailsService;
 
-    @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
-
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {

@@ -18,30 +18,28 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 
 
-//TODO: normal security for user-controllers: user see only his info, admin see all users
-//TODO: REST API for create, update, add, delete user.  admin can do all he wants/ Users not
-//TODO: add bootstrap
-//TODO: add views: login, sign-up, info
-//TODO: add ability to logout
-//TODO: set expiration time for cookies and tokens also set right path for cookies
-//TODO: validation for users sign up form and errors
-//TODO: remove hibernate
-//TODO: start and stop scripts
-//TODO: userDetailService ?
+
+
+//TODO: REST CRUD- operations
+
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+
+    private final AuthenticationManager authenticationManager;
+
+
+    private final LoginUserService loginUserService;
+
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-
-    @Autowired
-    private LoginUserService loginUserService;
+    public AuthenticationController(BCryptPasswordEncoder bCryptPasswordEncoder, AuthenticationManager authenticationManager, LoginUserService loginUserService) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.loginUserService = loginUserService;
+    }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView signupController(){
@@ -59,7 +57,6 @@ public class AuthenticationController {
         return ResponseEntity.ok(token);
     }
 
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView signinController() {
         return new ModelAndView("login");
@@ -76,10 +73,4 @@ public class AuthenticationController {
         return ResponseEntity.ok(new AuthToken(token));
     }
 
-
-
-
-
-
-    //TODO: REST CRUD- operations
 }

@@ -25,8 +25,6 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-
-
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
     }

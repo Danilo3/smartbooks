@@ -18,8 +18,12 @@ import java.util.List;
 @Service(value = "loginUserService")
 public class LoginLoginUserDetailServiceImpl implements UserDetailsService, LoginUserService {
 	
+	private final LoginUserDao loginUserDao;
+
 	@Autowired
-	private LoginUserDao loginUserDao;
+	public LoginLoginUserDetailServiceImpl(LoginUserDao loginUserDao) {
+		this.loginUserDao = loginUserDao;
+	}
 
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		LoginUser user = loginUserDao.findByUsername(userId);
