@@ -7,7 +7,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
+
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -20,7 +20,8 @@ import static com.koryakin.util.Constants.SIGNING_KEY;
 import static com.koryakin.util.Constants.ACCESS_TOKEN_VALIDITY_SECONDS;
 import static com.koryakin.util.Constants.SIGNING_KEY;
 
-@Component
+
+
 public class JwtTokenUtil implements Serializable {
 
     public static String getUsernameFromToken(String token) {
@@ -66,7 +67,7 @@ public class JwtTokenUtil implements Serializable {
                 .compact();
     }
 
-    static Boolean validateToken(String token, UserDetails userDetails) {
+    public static Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (
               username.equals(userDetails.getUsername())
