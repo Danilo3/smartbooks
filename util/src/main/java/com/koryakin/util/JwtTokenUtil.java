@@ -1,15 +1,17 @@
 package com.koryakin.util;
 
-import com.koryakin.model.LoginUser;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.function.Function;
 
@@ -46,14 +48,14 @@ public class JwtTokenUtil implements Serializable {
         return expiration.before(new Date());
     }
 
-    public static String generateToken(LoginUser user) {
-        return doGenerateToken(user.getUsername(), user.getRole());
+    public static String generateToken(UserDetails user) {
+        return doGenerateToken(user.getUsername(), user.getAuthorities());
     }
 
-    private static String doGenerateToken(String subject, String role) {
+    private static String doGenerateToken(String subject,Collection<? extends GrantedAuthority> roles) {
 
         Claims claims = Jwts.claims().setSubject(subject);
-        claims.put("scopes", Arrays.asList(new SimpleGrantedAuthority(role)));
+        claims.put("scopes", roles);
 
         return Jwts.builder()
                 .setClaims(claims)

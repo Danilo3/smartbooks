@@ -1,13 +1,18 @@
 package com.koryakin.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.management.relation.Role;
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.Collection;
 
 @Entity
-public class LoginUser extends User{
+public class LoginUser implements UserDetails{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -33,10 +38,36 @@ public class LoginUser extends User{
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new SimpleGrantedAuthority(role));
+    }
+
+    @Override
     public String getPassword() {
         return password;
     }
