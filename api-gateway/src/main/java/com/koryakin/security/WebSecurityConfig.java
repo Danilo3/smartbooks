@@ -1,4 +1,4 @@
-package com.koryakin.util;
+package com.koryakin.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
+
+//TODO: tests
+//TODO: check for multiple users/requests
+//TODO: add other urls for securing also api/ url
 
 @Configuration
 @EnableWebSecurity
@@ -45,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().
                 authorizeRequests()
-                .antMatchers("/auth/login", "/auth/signup" , "/webjars/**").permitAll()
+                .antMatchers("/auth/login", "/auth/signup" , "/webjars/**", "/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
 //                .and().formLogin().loginPage("/auth/login")
 //                .successForwardUrl("/user/me")

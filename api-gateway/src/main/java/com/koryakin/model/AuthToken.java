@@ -1,5 +1,8 @@
 package com.koryakin.model;
 
+
+
+//TODO: where i use it?
 public class AuthToken {
 
     private String token;

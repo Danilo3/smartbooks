@@ -11,6 +11,9 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
 
+//TODO: is role is necessary?
+//TODO: save users in postgreSQL in docker
+
 @Entity
 public class LoginUser implements UserDetails{
 

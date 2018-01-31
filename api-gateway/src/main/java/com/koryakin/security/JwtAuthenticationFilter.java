@@ -1,5 +1,7 @@
-package com.koryakin.util;
+package com.koryakin.security;
 
+import com.koryakin.util.CookieUtil;
+import com.koryakin.util.JwtTokenUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ import java.io.IOException;
 import static com.koryakin.util.Constants.HEADER_STRING;
 import static com.koryakin.util.Constants.TOKEN_PREFIX;
 
+
+//TODO: tests
+//TODO: remove cookies for requests from services
 public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 
     @Autowired
