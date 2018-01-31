@@ -16,12 +16,12 @@ import java.util.List;
 
 
 @Service(value = "loginUserService")
-public class LoginLoginUserDetailServiceImpl implements UserDetailsService, LoginUserService {
+public class LoginUserServiceImpl implements UserDetailsService, LoginUserService {
 	
 	private final LoginUserDao loginUserDao;
 
 	@Autowired
-	public LoginLoginUserDetailServiceImpl(LoginUserDao loginUserDao) {
+	public LoginUserServiceImpl(LoginUserDao loginUserDao) {
 		this.loginUserDao = loginUserDao;
 	}
 
